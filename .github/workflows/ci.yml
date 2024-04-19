@@ -1,5 +1,5 @@
----
 name: SQL Validation
+
 on:
   push:
     branches:
@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   validate_sql:
     runs-on: ubuntu-latest
@@ -18,7 +19,7 @@ jobs:
           pip install sqlfluff
           sqlfluff lint files/*.sql
       - name: Handle Results
-        run: >
+        run: |
           if [ $? -eq 0 ]; then
             echo "SQL validation succeeded!"
           else
@@ -37,11 +38,8 @@ jobs:
         uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: >
+          script: |
             const issueBody = process.env.issue_body;
-
             const issueTitle = process.env.issue_title;
-
             const { owner, repo } = context.repo;
-
             await github.issues.create({ owner, repo, title: issueTitle, body: issueBody });
