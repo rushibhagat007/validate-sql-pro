@@ -1,5 +1,5 @@
+---
 name: SQL Validation
-
 on:
   push:
     branches:
@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   validate_sql:
     runs-on: ubuntu-latest
@@ -24,22 +23,3 @@ jobs:
             echo "SQL validation succeeded!"
           else
             echo "SQL validation failed!"
-            # Create GitHub issue for notification
-            echo "Creating GitHub issue for notification..."
-            echo "SQL validation failed! Please check the logs for details." > issue_body.txt
-            echo "" >> issue_body.txt
-            echo "Log Output:" >> issue_body.txt
-            cat $GITHUB_WORKSPACE/*.txt >> issue_body.txt
-            echo "::set-output name=issue_body::$(cat issue_body.txt)"
-            echo "::set-output name=issue_title::SQL Validation Failed"
-          fi
-      - name: Create Issue
-        if: failure()
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const issueBody = process.env.issue_body;
-            const issueTitle = process.env.issue_title;
-            const { owner, repo } = context.repo;
-            await github.issues.create({ owner, repo, title: issueTitle, body: issueBody });
