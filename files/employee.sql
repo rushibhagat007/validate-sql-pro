@@ -1,1 +1,3 @@
-select * from employee e set e.name= 'Amit' where e.id=10;
+UPDATE employee 
+SET name = 'Amit' 
+WHERE id = 10;
