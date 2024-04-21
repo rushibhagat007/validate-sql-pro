@@ -12,10 +12,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Validate SQL Files
+      
+      - name: Validate SQL Files with SQLFluff
         run: |
           pip install sqlfluff
           sqlfluff lint --config .sqlfluff --dialect ansi files/*.sql
+      
+      - name: Custom SQL Validation
+        run: python custom_sql_validation.py
+      
       - name: Handle Results
         run: |
           if [ $? -eq 0 ]; then
