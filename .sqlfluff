@@ -1,3 +1,8 @@
 [sqlfluff]
 select_statement = [func_call | select_clause] W[where_clause] [order_by_clause | group_by_clause]?
-update_statement = [func_call | select_clause] W[where_clause]
+update_statement = update_clause W[where_clause]
+update_clause = UPDATE W[set_clause]
+set_clause = SET W[name_value_list]
+name_value_list = (name = value)
+name = any_identifier
+value = any_value
