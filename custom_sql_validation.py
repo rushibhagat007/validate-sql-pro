@@ -2,7 +2,7 @@ import os
 import re
 
 # Define the pattern to match UPDATE statements without WHERE clauses
-update_pattern = re.compile(r'^\s*UPDATE\s+\w+\s+SET\s+[^;]*\s*;', re.IGNORECASE)
+update_pattern = re.compile(r'^\s*UPDATE\s+\w+\s+SET\s+[^;]*?(?<!\sWHERE\s\w+\s*=\s*\w+)\s*;', re.IGNORECASE)
 
 # Function to scan SQL files in a directory and check for the specified pattern
 def check_sql_files(directory):
@@ -11,7 +11,7 @@ def check_sql_files(directory):
         if filename.endswith('.sql'):
             with open(os.path.join(directory, filename), 'r') as file:
                 for line_number, line in enumerate(file, start=1):
-                    if update_pattern.match(line.strip()):
+                    if update_pattern.match(line):
                         print(f"Issue found in '{filename}' at line {line_number}: UPDATE statement without WHERE clause")
                         issues_found = True
     return issues_found
