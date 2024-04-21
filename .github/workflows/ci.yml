@@ -15,7 +15,7 @@ jobs:
       - name: Validate SQL Files
         run: |
           pip install sqlfluff
-          sqlfluff lint --dialect ansi files/*.sql
+          sqlfluff lint --dialect ansi --config .sqlfluff files/*.sql
       - name: Handle Results
         run: |
           if [ $? -eq 0 ]; then
