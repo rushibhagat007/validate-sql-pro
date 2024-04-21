@@ -27,7 +27,4 @@ jobs:
             echo "SQL validation succeeded!"
           else
             echo "SQL validation failed!"
-            echo "Sending notification..."
-            # Add your notification mechanism here
-            # For example, send an email or create a GitHub issue
           fi

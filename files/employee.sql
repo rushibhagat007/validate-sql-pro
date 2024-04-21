@@ -1,1 +1,1 @@
-UPDATE employee SET name = 'Amit1';
+UPDATE employee SET name = 'Amit' WHERE id = 1;
