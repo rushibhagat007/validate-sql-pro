@@ -16,7 +16,7 @@ jobs:
       - name: Validate SQL Files with SQLFluff
         run: |
           pip install sqlfluff
-          sqlfluff lint --config .sqlfluff --dialect ansi files/*.sql
+          sqlfluff lint --dialect ansi files/*.sql
       
       - name: Custom SQL Validation
         run: python custom_sql_validation.py
