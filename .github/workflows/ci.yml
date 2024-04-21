@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       
-      - name: Validate SQL Files with SQLFluff
+      - name: Validate SQL Files with ansi dialect
         run: |
           pip install sqlfluff
           sqlfluff lint --dialect ansi files/*.sql
