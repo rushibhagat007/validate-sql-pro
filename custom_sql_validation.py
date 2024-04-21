@@ -2,7 +2,7 @@ import os
 import re
 
 # Define the pattern to match UPDATE statements without WHERE clauses
-update_pattern = re.compile(r'^\s*UPDATE\s+\w+\s+SET\s+[^;]*?(?<!\sWHERE\s\w+\s*=\s*\w+)\s*;', re.IGNORECASE)
+update_pattern = re.compile(r'^\s*UPDATE\s+\w+\s+SET\s+[^;]*?(?:WHERE\s+\w+\s*=\s*\w+)?\s*;', re.IGNORECASE)
 
 # Function to scan SQL files in a directory and check for the specified pattern
 def check_sql_files(directory):
