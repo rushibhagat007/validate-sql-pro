@@ -1,5 +1,3 @@
-[rule select_where_clause_required]
-select_statement: [func_call | select_clause] W[here_clause] [order_by_clause | group_by_clause]?
+select_statement: [func_call | select_clause] where_clause [order_by_clause | group_by_clause]?
 
-[rule update_where_clause_required]
-update_statement: [func_call | select_clause] W[where_clause]
+update_statement: [func_call | select_clause] where_clause
